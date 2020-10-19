@@ -4,7 +4,7 @@
 The brute force algorithm is to compute the difference between all timestamps, keeping track of the minimum along the way. However, we want to make sure that we aren't comparing a timestamp with itself: that is, do not compute the difference between timeStamp[i] and timeStamp[i] as that will lead to the wrong answer of 0.
 
 To start with lets make a function that computes the difference between 2 timestamps. 
-Comparing timestamps time1 and time2 is relatively easy if time2 > time1, but what if time1 > time2? A simple way around this is to increment time2 by 24 hours. Notice that difference("00:00", "23:59") can be more easily expressed as difference("24:00", "23:59"). To do that, we can make a function that increments a timestamp by 24 hours.
+Comparing timestamps time1 and time2 is relatively easy if time2 > time1, but what if time1 > time2? A simple way around this is to increment time2 by 24 hours. Notice that ```difference("00:00", "23:59")``` can be more easily expressed as ```difference("24:00", "23:59")```. To do that, we can make a function that increments a timestamp by 24 hours.
 All it takes is some string splicing, and we get our code:
 
 ```java
@@ -92,7 +92,7 @@ class Solution {
 Complexity Analysis
 
 * Time Complexity is: 
-> O(N^2), where N is the size of timeStamps. This is because we go through all timestamps for each timestamp.
+> O(N<sup>2</sup>), where N is the size of timeStamps. This is because we go through all timestamps for each timestamp.
 
 * Space Complexity is:
 > O(1), the only additional space we use is our min variable, which does not scale with the size of timeStamps.
@@ -165,15 +165,15 @@ class Solution {
 
 Complexity Analysis
 
-Time Complexity is: 
-O(N*log(N)), where N is the size of timeStamps. This is because of the sort. Afterwards we iterate over each timeStamp which costs N, but that gets dominated by the N*log(N) complexity
+* Time Complexity is: 
+> O(Nlog(N)), where N is the size of timeStamps. This is because of the sort. Afterwards we iterate over each timeStamp which costs N, but that gets dominated by the Nlog(N) complexity
 
-Space Complexity is:
-O(1), the only additional space we use is our min variable, which does not scale with the size of timeStamps.
+* Space Complexity is:
+> O(1), the only additional space we use is our min variable, which does not scale with the size of timeStamps.
 
 ---
-### Approach #3: Two Pass with Bucket [Accepted]
-## Intuition and Algorithm
+## Approach #3: Two Pass with Bucket [Accepted]
+### Intuition and Algorithm
 
 The problem with Approach #2 was that the sorting (N*log(N)) dominated our actual timeStamp traversal (N), if we can make the sorting complexity N, this will speed up our algorithm. Unfortunately, there is no known sorting that is faster than N*log(N)... or at least none that is comparison based :). For this solution, we take ideas from radix sort.
 
@@ -267,8 +267,8 @@ class Solution {
 
 Complexity Analysis
 
-Time Complexity is: 
-O(N), where N is the size of timeStamps. This is because we iterate over all our timeStamps in our first pass. Our second pass will do 24 * 60 = 1440 iterations regardless of N.
+* Time Complexity is: 
+> O(N), where N is the size of timeStamps. This is because we iterate over all our timeStamps in our first pass. Our second pass will do 24 * 60 = 1440 iterations regardless of N.
 
-Space Complexity is:
-O(1). Even though use our bucket as storage, its size will always be 24 * 60. Thus, our space is constant (unaffected by size of timeStamps)
+* Space Complexity is:
+> O(1). Even though use our bucket as storage, its size will always be 24 * 60. Thus, our space is constant (unaffected by size of timeStamps)
